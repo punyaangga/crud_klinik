@@ -77,4 +77,5 @@ Class DataDokter extends CI_Controller{
 		echo "<a href='".base_url('index.php/tampilDataDokter')."'>Tampil data Dokter</a>";
 	}
 }
+}
 ?>
