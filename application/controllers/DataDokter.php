@@ -23,7 +23,15 @@ Class DataDokter extends CI_Controller{
     }
 
     public function simpan(){
-	
+		$data = array('namaDokter'=>$this->input->post('namaDokter'),'jenisKelamin'=>$this->input->post('jenisKelamin'),'tempatLahir'=>$this->input->post('tempatLahir'),'tglLahir'=>$this->input->post('tglLahir'),'alamat'=>$this->input->post('alamat'),'noTelp'=>$this->input->post('noTelp'),'noIjinPraktek'=>$this->input->post('noIjinPraktek'));
+		$proses=$this->M_kelolaDataDokter->simpan($data);
+		if (!$proses) {
+			header('Location: index');
+		} else {
+			echo "Data Gagal Disimpan";
+			echo "<br>";
+			echo "<a href='".base_url('index.php/DataDokter/index/')."'>Kembali ke form</a>";
+		}
 	}
 
     public function edit(){
@@ -59,7 +67,14 @@ Class DataDokter extends CI_Controller{
 
 	public function hapus()
 	{
-		
+		$id = $this->uri->segment(3);
+		$proses = $this->M_kelolaDataDokter->hapus($id);
+	if (!$proses) {
+			redirect(base_url('index.php'));
+	} else {
+		echo "Data Gagal dihapus";
+		echo "<br>";
+		echo "<a href='".base_url('index.php/tampilDataDokter')."'>Tampil data Dokter</a>";
 	}
 }
 ?>

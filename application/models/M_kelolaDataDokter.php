@@ -11,7 +11,7 @@ Class M_kelolaDataDokter extends CI_Model{
         return $data->result();
     }
     public function simpan($data){
-        
+        $this->db->insert('dokter',$data);
     }
 
     public function tampilDataDokter()
@@ -31,7 +31,8 @@ Class M_kelolaDataDokter extends CI_Model{
 	}
 	public function hapus($id)
     {
-    
+        $this->db->where('idDokter', $id);
+        $query = $this->db->delete('dokter');
     }
 
 }
